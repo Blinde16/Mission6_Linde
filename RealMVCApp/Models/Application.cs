@@ -1,7 +1,10 @@
-﻿namespace RealMVCApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RealMVCApp.Models
 {
     public class Application
     {
+        [Key]
         public int MovieFormID { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }

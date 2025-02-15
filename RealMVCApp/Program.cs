@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MoviesContext>(options =>
 {
-    options.UseSqlite(builder.Configuration["ConnectionStrings:DbConnection"]);
+    options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
 var app = builder.Build();

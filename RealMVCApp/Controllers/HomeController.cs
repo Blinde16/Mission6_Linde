@@ -6,6 +6,11 @@ namespace RealMVCApp.Controllers
 {
     public class HomeController : Controller
     {
+        private MoviesContext _context;
+        public HomeController(MoviesContext temp) // Constructor
+        {
+            _context = temp;
+        }
         public IActionResult Index()
         {
             return View();
@@ -25,7 +30,9 @@ namespace RealMVCApp.Controllers
         [HttpPost]
         public IActionResult MovieForm(Application response)
         {
-            return View();
+            _context.Applications.Add(response); //Add record to the database
+            _context.SaveChanges();
+            return View("Confirmation", response);
         }
     }
 }
