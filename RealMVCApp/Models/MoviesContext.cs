@@ -9,6 +9,13 @@ namespace RealMVCApp.Models
         }
 
         public DbSet<Movies> Movies { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Category { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>().ToTable("Categories");
+            modelBuilder.Entity<Movies>().ToTable("Movies");
+        }
+
     }
 }

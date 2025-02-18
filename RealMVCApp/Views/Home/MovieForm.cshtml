@@ -1,11 +1,11 @@
 ﻿@model Movies
 
 <form method="post">
-    <input asp-for="MovieId" type="hidden">/>
+    <input asp-for="MovieId" type="hidden">
     <label asp-for="CategoryId">Category</label>
     <select asp-for="CategoryId" required>
-        <option value="">Select a Major</option>
-        @foreach (Category x in ViewBag.Majors)
+        <option value="">Select a Category</option>
+        @foreach (Category x in ViewBag.Category)
         {
             <option value="@x.CategoryId">@x.CategoryName</option>
         }
@@ -21,12 +21,7 @@
     <input asp-for="Director" required />
     <br />
     <label asp-for="Rating">Rating</label>
-    <select asp-for="Rating">
-        <option>G</option>
-        <option>PG</option>
-        <option>PG-13</option>
-        <option>R</option>
-    </select>
+    <input asp-for="Rating" required />
     <br />
     <label asp-for="Edited">Edited</label>
     <input asp-for="Edited" type="checkbox" />

@@ -25,6 +25,10 @@ namespace RealMVCApp.Controllers
         [HttpGet]
         public IActionResult MovieForm()
         {
+            ViewBag.Category = _context.Category
+                .OrderBy(x => x.CategoryName)
+                .ToList();
+
             return View();
         }
 
@@ -38,7 +42,7 @@ namespace RealMVCApp.Controllers
         //Need to adjust Controllers below. 
         public IActionResult MovieTable()
         {
-            var movies = _context.Movies//Dbset<application>
+            var movies = _context.Movies //Dbset<Movies>
                 .Include(x => x.Category)
                 .OrderBy(x => x.Title)
                 .ToList();
@@ -50,7 +54,7 @@ namespace RealMVCApp.Controllers
             Movies recordToEdit = _context.Movies
                 .Single(x => x.MovieId == recordId);
 
-            ViewBag.Category = _context.Categories
+            ViewBag.Category = _context.Category
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 

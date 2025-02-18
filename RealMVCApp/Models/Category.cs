@@ -7,6 +7,7 @@ namespace RealMVCApp.Models
         [Key]
 
         public int CategoryId { get; set; }
+        [Required]
         public string CategoryName { get; set; }
     }
 }

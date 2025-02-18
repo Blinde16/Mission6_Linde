@@ -28,12 +28,12 @@ namespace RealMVCApp.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("RealMVCApp.Models.Movies", b =>
                 {
-                    b.Property<int>("MovieFormId")
+                    b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -47,9 +47,8 @@ namespace RealMVCApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Edited")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("Edited")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LentTo")
                         .IsRequired()
@@ -70,11 +69,11 @@ namespace RealMVCApp.Migrations
                     b.Property<int>("Year")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("MovieFormId");
+                    b.HasKey("MovieId");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("RealMVCApp.Models.Movies", b =>
