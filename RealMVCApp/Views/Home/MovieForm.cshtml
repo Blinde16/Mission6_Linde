@@ -1,16 +1,13 @@
 ﻿@model Application
 
 <form method="post">
-    <label asp-for="Category">Category</label>
-    <select asp-for="Category" required>
-        <option>Action/Adventure</option>
-        <option>Comedy</option>
-        <option>Drama</option>
-        <option>Family</option>
-        <option>Horror/Suspense</option>
-        <option>Miscellaneous</option>
-        <option>Television</option>
-        <option>VHS</option>
+    <label asp-for="CategoryId">Category</label>
+    <select asp-for="CategoryId" required>
+        <option value="">Select a Major</option>
+        @foreach (Category category in ViewBag.Majors)
+        {
+            <option value="@x.CategoryId">@category.CategoryName</option>
+        }
     </select>
     <br />
     <label asp-for="Title">Title</label>

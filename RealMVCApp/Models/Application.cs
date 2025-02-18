@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealMVCApp.Models
 {
     public class Application
     {
         [Key]
-        public int MovieFormID { get; set; }
+        [Required]
+        public int MovieFormId { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
         public int Year { get; set; }
@@ -15,6 +17,8 @@ namespace RealMVCApp.Models
         public string LentTo { get; set; }
         public string Notes { get; set; }
 
-
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
+        public Category CategoryName { get; set; }
     }
 }
