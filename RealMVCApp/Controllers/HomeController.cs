@@ -29,25 +29,26 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MovieForm(Application response)
+        public IActionResult MovieForm(Movies response)
         {
-            _context.Applications.Add(response); //Add record to the database
+            _context.Movies.Add(response); //Add record to the database
             _context.SaveChanges();
             return View("Confirmation", response);
         }
         //Need to adjust Controllers below. 
-        public IActionResult MovieTable(Application response)
+        public IActionResult MovieTable()
         {
-            var applications = _context.Applications//Dbset<application>
+            var movies = _context.Movies//Dbset<application>
                 .Include(x => x.Category)
-                .OrderBy(x => x.Category);
-            return View(applications);
+                .OrderBy(x => x.Title)
+                .ToList();
+            return View(movies);
         }
         [HttpGet]
         public IActionResult Edit(int recordId)
         {
-            Application recordToEdit = _context.Applications
-                .Single(x => x.MovieFormID == recordId);
+            Movies recordToEdit = _context.Movies
+                .Single(x => x.MovieId == recordId);
 
             ViewBag.Category = _context.Categories
                 .OrderBy(x => x.CategoryName)
@@ -57,7 +58,7 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Application updatedInfo)
+        public IActionResult Edit(Movies updatedInfo)
         {
             _context.Update(updatedInfo);
             _context.SaveChanges();
@@ -66,18 +67,20 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int recordId)
         {
-            var recordToDelete = _context.Applications
-                .Single(x => x.MovieFormId = id);
+            var recordToDelete = _context.Movies
+                .Single(x => x.MovieId == recordId);
             return View(recordToDelete);
         }
 
         [HttpPost]
-        public IActionResult Delete(Application updatedInfo)
+        public IActionResult Delete(Movies updatedInfo)
         {
-            _context.Applications.Remove(updatedInfo);
+            _context.Movies.Remove(updatedInfo);
             _context.SaveChanges();
+
+            return RedirectToAction("MovieTable");
         }
     }
 }

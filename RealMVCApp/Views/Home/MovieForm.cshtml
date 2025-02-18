@@ -1,12 +1,13 @@
-﻿@model Application
+﻿@model Movies
 
 <form method="post">
+    <input asp-for="MovieId" type="hidden">/>
     <label asp-for="CategoryId">Category</label>
     <select asp-for="CategoryId" required>
         <option value="">Select a Major</option>
-        @foreach (Category category in ViewBag.Majors)
+        @foreach (Category x in ViewBag.Majors)
         {
-            <option value="@x.CategoryId">@category.CategoryName</option>
+            <option value="@x.CategoryId">@x.CategoryName</option>
         }
     </select>
     <br />
@@ -32,6 +33,9 @@
     <br />
     <label asp-for="LentTo">Lent To:</label>
     <input asp-for="LentTo" />
+    <br />
+    <label asp-for="CopiedToPlex" >Copied to Plex?</label>
+    <input asp-for="CopiedToPlex" type="checkbox" />
     <br />
     <label asp-for="Notes">Notes</label>
     <input asp-for="Notes" maxlength="25" />
