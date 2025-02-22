@@ -11,6 +11,7 @@ namespace RealMVCApp.Models
         public DbSet<Movies> Movies { get; set; }
         public DbSet<Category> Category { get; set; }
 
+        //Setting the override to ensure the tables are pulled from Categories and Movies. 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().ToTable("Categories");

@@ -42,6 +42,7 @@ namespace RealMVCApp.Controllers
         //Need to adjust Controllers below. 
         public IActionResult MovieTable()
         {
+            // Grabbing movies context and setting to list 
             var movies = _context.Movies
             .Include(x => x.Category)
             .OrderBy(x => x.Title)
@@ -51,9 +52,10 @@ namespace RealMVCApp.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            //Grabbing the Record to edit via the Id
             Movies recordToEdit = _context.Movies
                 .Single(x => x.MovieId == id);
-
+            // Setting the viewbag to include the categories
             ViewBag.Category = _context.Category
                 .OrderBy(x => x.CategoryName)
                 .ToList();
@@ -62,6 +64,7 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpPost]
+        //Posting the updates to the edited movie pane
         public IActionResult Edit(Movies updatedInfo)
         {
             _context.Update(updatedInfo);
@@ -71,6 +74,7 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpGet]
+        // Getting the Delete confirmation page
         public IActionResult Delete(int id)
         {
             Movies recordToDelete = _context.Movies
@@ -79,6 +83,7 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpPost]
+        //Submitting the delete statement.
         public IActionResult Delete(Movies updatedInfo)
         {
             _context.Movies.Remove(updatedInfo);

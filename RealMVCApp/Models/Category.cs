@@ -2,6 +2,7 @@
 
 namespace RealMVCApp.Models
 {
+    //Category Table class here. 
     public class Category
     {
         [Key]
