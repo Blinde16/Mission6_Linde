@@ -42,23 +42,23 @@ namespace RealMVCApp.Controllers
         //Need to adjust Controllers below. 
         public IActionResult MovieTable()
         {
-            var movies = _context.Movies //Dbset<Movies>
-                .Include(x => x.Category)
-                .OrderBy(x => x.Title)
-                .ToList();
+            var movies = _context.Movies
+            .Include(x => x.Category)
+            .OrderBy(x => x.Title)
+            .ToList();
             return View(movies);
         }
         [HttpGet]
-        public IActionResult Edit(int recordId)
+        public IActionResult Edit(int id)
         {
             Movies recordToEdit = _context.Movies
-                .Single(x => x.MovieId == recordId);
+                .Single(x => x.MovieId == id);
 
             ViewBag.Category = _context.Category
                 .OrderBy(x => x.CategoryName)
                 .ToList();
 
-            return View("MovieForm");
+            return View("MovieForm", recordToEdit);
         }
 
         [HttpPost]
@@ -71,10 +71,10 @@ namespace RealMVCApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int recordId)
+        public IActionResult Delete(int id)
         {
-            var recordToDelete = _context.Movies
-                .Single(x => x.MovieId == recordId);
+            Movies recordToDelete = _context.Movies
+                .Single(x => x.MovieId == id);
             return View(recordToDelete);
         }
 

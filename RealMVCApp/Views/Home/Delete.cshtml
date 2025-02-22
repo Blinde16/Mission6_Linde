@@ -3,9 +3,12 @@
 *@
 @{
 }
+@model Movies
+
 <h2>Confirm Deletion</h2>
-<h3>@Model.LastName, @Model.FirstName</h3>
+<h3>@Model.Title</h3>
 <form method="post">
+    <input type="hidden" asp-for="MovieId"/>
     <button type="submit">Delete</button>
-    <a class="btn btn-info" asp-controller="home" asp-action="WaitList">Cancel</a>
+    <a class="btn btn-info" asp-controller="Home" asp-action="MovieTable">Cancel</a>
 </form>
